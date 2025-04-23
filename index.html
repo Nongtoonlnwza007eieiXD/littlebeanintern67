@@ -64,6 +64,57 @@
         nav ul li a#products-link {
             padding: 0.7rem 1rem; /* ปรับ padding ปุ่มสินค้าของเราให้แคบลง */
         }
+/* Dropdown styles */
+nav ul li.dropdown {
+    position: relative;
+}
+
+nav ul li.dropdown > a {
+    display: block; /* Make the main link a block element */
+    padding-right: 1.5rem; /* Adjust padding as needed */
+}
+
+nav ul li.dropdown .submenu-wrapper {
+    display: none; /* ซ่อน wrapper เริ่มต้น */
+    position: absolute;
+    top: 100%;
+    left: 0;
+    z-index: 20;
+}
+
+nav ul li.dropdown:hover .submenu-wrapper {
+    display: block; /* แสดง wrapper เมื่อ hover */
+}
+
+nav ul li.dropdown .hover-box {
+    background-color: #fff;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    border-radius: 0.3rem;
+    padding: 0.5rem; /* ปรับ padding โดยรวม */
+    min-width: 200px; /* ปรับความกว้างให้พอดีกับข้อความ */
+    /* เอา display: flex; และ gap ออก */
+}
+
+nav ul li.dropdown .hover-box a {
+    display: block; /* ให้แต่ละลิงก์เป็น block เพื่อขึ้นบรรทัดใหม่ */
+    padding: 0.7rem 1rem;
+    color: #555;
+    text-decoration: none;
+    white-space: nowrap;
+    transition: background-color 0.3s ease;
+    text-align: left; /* จัดข้อความชิดซ้าย */
+    border-radius: 0.3rem; /* เพิ่มขอบโค้งให้กับแต่ละลิงก์ */
+    margin-bottom: 0.2rem; /* เพิ่มช่องว่างเล็กน้อยระหว่างลิงก์ */
+}
+
+nav ul li.dropdown .hover-box a:last-child {
+    margin-bottom: 0; /* เอา margin-bottom ออกสำหรับลิงก์สุดท้าย */
+}
+
+nav ul li.dropdown .hover-box a:hover {
+    background-color: #f4f4f4;
+    color: #0a2a43;
+}
 
         .hero {
             background-color: #e9ecef;
@@ -246,8 +297,17 @@
         <ul>
             <li><a href="#" id="home-link">หน้าแรก</a></li>
             <li><a href="#" id="products-link">สินค้าของเรา</a></li>
-            <li><a href="#">วิธีการสั่งซื้อ</a></li>
+            <li class="dropdown">
+                <a href="#">วิธีการสั่งซื้อ</a>
+                <div class="submenu-wrapper">
+                    <div class="hover-box">
+                        <a href="#">วิธีการสั่งซื้อสินค้า</a>
+                        <a href="#">วิธีการจัดส่งสินค้า</a>
+                    </div>
+                </div>
+            </li>
             <li><a href="#" id="contact-link">ติดต่อเรา</a></li>
+        </ul>
         </ul>
     </nav>
 

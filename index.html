@@ -1,0 +1,403 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <title>นาพ่อ สวนแม่</title>
+    <style>
+        /* Import Font Prompt from Google Fonts */
+        @import url('https://fonts.googleapis.com/css2?family=Prompt:wght@300;400;500;600;700&display=swap');
+
+        body {
+            margin: 0;
+            font-family: 'Prompt', sans-serif;
+            background-color: #f4f4f4;
+            color: #333;
+            line-height: 1.6;
+        }
+
+        header {
+            background-color: #333;
+            padding: 1rem 2rem;
+            color: white;
+            font-weight: 500;
+            text-align: right;
+            z-index: 10; /* Ensure header is above other elements */
+        }
+
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background-color: #fff;
+            padding: 1rem 2rem;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            z-index: 10; /* Ensure navigation is above other elements */
+        }
+
+        nav .logo {
+            font-size: 1.8rem;
+            font-weight: 600;
+            color: #0a2a43;
+        }
+
+        nav ul {
+            list-style: none;
+            display: flex;
+            gap: 2rem;
+            margin: 0;
+            padding: 0;
+        }
+
+        nav ul li a {
+            text-decoration: none;
+            color: #555;
+            font-weight: 400;
+            transition: color 0.3s ease;
+            padding: 0.7rem 1.5rem; /* ปรับ padding ทั่วไป */
+        }
+
+        nav ul li a:hover {
+            color: #0a2a43;
+        }
+
+        nav ul li a#products-link {
+            padding: 0.7rem 1rem; /* ปรับ padding ปุ่มสินค้าของเราให้แคบลง */
+        }
+
+        .hero {
+            background-color: #e9ecef;
+            padding: 4rem 2rem;
+            text-align: center;
+            background-image: url('bg.png'); /* เพิ่มรูปพื้นหลัง */
+            background-size: cover; /* ปรับขนาดให้ครอบคลุม */
+            background-position: center top; /* จัดตำแหน่งให้อยู่ตรงกลางด้านบน */
+            min-height: 400px; /* กำหนดความสูงขั้นต่ำ */
+            display: flex;
+            flex-direction: column;
+            justify-content: center; /* จัดข้อความให้อยู่ตรงกลางแนวตั้ง */
+            animation: subtleFade 5s infinite alternate; /* เพิ่ม animation */
+            z-index: 1; /* Ensure hero is below header and navigation */
+        }
+
+        @keyframes subtleFade {
+            from { opacity: 0.95; }
+            to { opacity: 1; }
+        }
+
+        .hero h1 {
+            margin-top: 0;
+            font-size: 2.5rem;
+            color: #0a2a43;
+            font-weight: 600;
+            margin-bottom: 1rem;
+            text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.2); /* เพิ่มเงาให้ข้อความ */
+        }
+
+        .content {
+            background-color: #fff;
+            color: #333;
+            padding: 3rem 2rem;
+            display: flex;
+            flex-wrap: wrap;
+            gap: 2rem;
+            justify-content: center;
+            z-index: 1;
+        }
+
+        .content img {
+            width: 100%;
+            max-width: 600px; /* เพิ่มขนาดรูปภาพใน content */
+            height: auto;
+            border-radius: 0.5rem;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            margin-bottom: 1rem;
+        }
+
+        .text-block {
+            max-width: 600px;
+        }
+
+        .footer {
+            background-color: #333;
+            color: white;
+            text-align: center;
+            padding: 1.5rem;
+            margin-top: 3rem;
+            font-size: 0.9rem;
+            z-index: 10; /* Ensure footer is above other elements if needed */
+        }
+
+        .rice-section {
+            display: none;
+            background-color: #fff;
+            padding: 3rem 2rem;
+            text-align: center;
+            z-index: 1;
+        }
+
+        .rice-container {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 2rem;
+            margin-top: 1rem;
+        }
+
+        .rice-item {
+            text-align: center;
+            max-width: 300px;
+            border: 1px solid #ddd;
+            border-radius: 0.5rem;
+            padding: 1.5rem;
+            z-index: 1;
+        }
+
+        .rice-item img {
+            width: 80%;
+            height: auto;
+            border-radius: 0.3rem;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+            margin-bottom: 0.8rem;
+            z-index: 1;
+        }
+
+        .rice-item h3 {
+            color: #0a2a43;
+            margin-bottom: 0.5rem;
+            font-weight: 500;
+            z-index: 1;
+        }
+
+        .rice-item p {
+            line-height: 1.6;
+            color: #555;
+            z-index: 1;
+        }
+
+        .contact-section {
+            display: none;
+            background-color: #f9f9f9;
+            padding: 3rem 2rem;
+            text-align: center;
+            z-index: 1;
+        }
+
+        .contact-info {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 3rem;
+            margin-top: 2rem;
+        }
+
+        .contact-item {
+            text-align: left;
+            border: 1px solid #ddd;
+            border-radius: 0.5rem;
+            padding: 1.5rem;
+            max-width: 400px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
+            z-index: 1;
+        }
+
+        .contact-item h3 {
+            color: #0a2a43;
+            margin-bottom: 0.8rem;
+            font-weight: 500;
+            z-index: 1;
+        }
+
+        .contact-item p {
+            line-height: 1.7;
+            color: #555;
+            margin-bottom: 1rem;
+            z-index: 1;
+        }
+
+        .contact-item strong {
+            font-weight: 600;
+            color: #333;
+        }
+
+        #homepage-status {
+            display: none; /* ซ่อนข้อความเริ่มต้น */
+            position: fixed;
+            top: 20px;
+            left: 20px;
+            background-color: rgba(255, 255, 255, 0.8);
+            padding: 10px 15px;
+            border-radius: 5px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+            font-size: 0.9rem;
+            color: #333;
+            z-index: 10; /* Ensure status is above other elements */
+        }
+    </style>
+</head>
+<body>
+    <header>ผลิต–จำหน่าย ข้าวอินทรีย์ และสินค้าทางการเกษตร</header>
+
+    <nav>
+        <div class="logo" style="display: flex; align-items: center; gap: 10px;">
+            <img src="logo.jpg" alt="นาพ่อ สวนแม่ Logo" style="max-height: 40px; vertical-align: middle;">
+            <span style="font-weight: 600; color: #0a2a43;">นาพ่อ สวนแม่</span>
+        </div>
+        <ul>
+            <li><a href="#" id="home-link">หน้าแรก</a></li>
+            <li><a href="#" id="products-link">สินค้าของเรา</a></li>
+            <li><a href="#">วิธีการสั่งซื้อ</a></li>
+            <li><a href="#" id="contact-link">ติดต่อเรา</a></li>
+        </ul>
+    </nav>
+
+    <div class="hero">
+        <h1></h1>
+    </div>
+
+    <div class="content content-default" id="default-content">
+        <img src="1.jpg" alt="รูปสวนเกษตร" />
+        <div class="text-block">
+            <h2>จุดเริ่มต้นของนาพ่อ สวนแม่</h2>
+            <p>
+                สวนของเราเริ่มจากความตั้งใจของคุณวิทมนต์ ช่างเรือนกุล พนักงานออฟฟิศที่อยากกลับมาทำเกษตรกรรม ซึ่งเป็นอาชีพดั้งเดิมของครอบครัว โดยแต่เดิมครอบครัวมีอาชีพทำนาและทำ สวนซึ่งเป็นอาชีพที่ส่งเสียจนเรียนจบแต่ด้วยปัญหาและความลำบากของเกษตรกรมากมาย อาทิ เช่น ปัญหาความยากจนจากราคาข้าวที่ตกต่ำและภัยธรรมชาติทำให้พ่อแม่ตั้งใจให้ลูก มีอาชีพการงานประจำที่มั่นคงเพื่อจะได้ไม่ลำบากคุณวิทมนต์จึงได้เข้ามาทำงานในกรุงเทพเหมือนลูกหลานชาวนาทั่วๆไป จนถึงปัจจุบันราวๆ30ปี จนมีการงานที่มั่นคงและดูแลครอบครัวได้แต่เขาพบว่า การทำงานในเมืองเต็มไปตัวความเครียดต้องเร่งรีบในทุกๆวันจนไม่มีเวลาให้กับครอบครัวและอาหารที่ซื้อบริโภคทุกๆวันในท้องตลาดใช้สารเคมีในการเพาะปลูกที่ส่งผลเสียต่อร่างกายในระยะยาวปัญหาเหล่านี้สะสมมาเรื่อยๆ
+                <br/><br/>
+                จนเกิดเหตุการณ์ covid-19 ที่จุดเปลี่ยนความคิดให้เริ่มกลับมาสนใจอาชีพดังเดิมของครอบครัว เนื่องจากโรคระบาดสะท้อนให้เห็นถึงความสำคัญของการมีแหล่งอาหารที่สดสะอาดปลอดภัยไว้บริโภคในครัวเรือน เพราะผลกระทบจากการขาดแคลนอาหารจากปัญหาการขนส่งและราคาอาหารแพง เมื่อตัดสินใจได้แล้วจึงเริ่มต้นเรียนรู้จากโครงการโคกหนองนาควบคู่ไปกับการทำเกษตรอินทรีย์แต่หลังจากที่กลับมาเริ่มต้นทำเกษตรจากพื้นที่จริง พบว่าสภาพแวดล้อม เช่น กุ้ง หอย ปู ปลา พันธุ์ไม้ หรือ แมลงท้องถิ่นที่ส่งผลดีต่อระบบนิเวศถูกทำลายจากการใช้สารเคมีในการทำเกษตรกรรม จึงหันมาสนใจปลูกป่าเพื่อรักษาสิ่งแวดล้อมในพื้นที่มากขึ้นจากการตระหนักว่าการมีสุขภาพดีไม่ใช่แค่อาหารปลอดภัยแต่รวมถึงอากาศสภาพแวดล้อมและระบบนิเวศที่ดีด้วยจึงจะเกิดสุขภาพที่ดีอย่างแท้จริง
+            </p>
+        </div>
+    </div>
+
+    <div class="rice-section" id="rice-section">
+        <h2>สินค้าของเรา - ข้าวอินทรีย์</h2>
+        <div class="rice-container">
+            <div class="rice-item">
+                <img src="ข้าวขาว.jpg" alt="ข้าวขาว" />
+                <h3>ข้าวขาว</h3>
+                <p>ข้าวขาวของเราปลูกด้วยวิธีเกษตรอินทรีย์ ปลอดภัยจากสารเคมี มีเมล็ดเรียวยาว หุงขึ้นหม้อ รสชาตินุ่มละมุน เหมาะสำหรับทุกมื้ออาหาร</p>
+            </div>
+            <div class="rice-item">
+                <img src="ข้าวกล้อง.jpg" alt="ข้าวกล้อง" />
+                <h3>ข้าวกล้อง</h3>
+                <p>ข้าวกล้องเต็มเมล็ด คงคุณค่าทางอาหารสูง อุดมไปด้วยใยอาหาร วิตามิน และแร่ธาตุต่างๆ มีรสชาติเป็นเอกลักษณ์ เหมาะสำหรับผู้ที่ใส่ใจสุขภาพ</p>
+            </div>
+            <div class="rice-item">
+                <img src="ข้าวไรซ์เบอร์รี่.jpg" alt="ข้าวไรซ์เบอร์รี่" />
+                <h3>ข้าวไรซ์เบอร์รี่</h3>
+                <p>ข้าวไรซ์เบอร์รี่สีม่วงเข้ม อุดมไปด้วยสารต้านอนุมูลอิสระสูง มีรสชาติหอมนุ่ม เป็นแหล่งของวิตามินและแร่ธาตุที่ดีต่อร่างกาย</p>
+            </div>
+        </div>
+    </div>
+
+    <div class="contact-section" id="contact-section">
+        <div class="contact-info">
+            <div class="contact-item">
+                <h3>นาพ่อ สวนแม่ @สุพรรณบุรี</h3>
+                <p><strong>สถานที่ตั้ง:</strong> 89 หมู่1 ต.ทับตีเหล็ก อ.เมือง จ.สุพรรณบุรี 72000</p>
+            </div>
+            <div class="contact-item">
+                <h3>ช่องทางติดต่อ</h3>
+                <p><strong>เบอร์โทร:</strong> 096-261-4569</p>
+                <p><strong>facebook:</strong> นาพ่อ สวนแม่</p>
+            </div>
+            <div class="contact-item">
+                <h3>ช่วงเวลาทำการ</h3>
+                <p>เปิดทุกวัน</p>
+                <p><strong>จันทร์ - เสาร์:</strong> 08:00 - 17:00 น.</p>
+                <p><strong>อาทิตย์:</strong> 10:00 - 18:00 น.</p>
+            </div>
+        </div>
+    </div>
+
+    <div class="footer">
+        &copy; 2025 นาพ่อ สวนแม่. สงวนลิขสิทธิ์.
+    </div>
+
+    <div id="homepage-status">อยู่ที่หน้าแรก</div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const homeLink = document.getElementById('home-link');
+            const productsLink = document.getElementById('products-link');
+            const contactLink = document.getElementById('contact-link');
+            const defaultContent = document.getElementById('default-content');
+            const riceSection = document.getElementById('rice-section');
+            const contactSection = document.getElementById('contact-section');
+            const heroSection = document.querySelector('.hero');
+            const homepageStatus = document.getElementById('homepage-status');
+
+            // แสดงข้อความ "อยู่ที่หน้าแรก" เมื่อโหลดหน้าเว็บ
+            homepageStatus.style.display = 'block';
+            setTimeout(() => {
+                homepageStatus.style.display = 'none'; // ซ่อนหลังจาก 3 วินาที (ปรับได้ตามต้องการ)
+            }, 3000);
+
+            homeLink.addEventListener('click', function(event) {
+                event.preventDefault();
+
+                // แสดงเนื้อหาเริ่มต้น
+                defaultContent.style.display = 'flex';
+
+                // ซ่อนส่วนข้อมูลข้าวและติดต่อเรา
+                riceSection.style.display = 'none';
+                contactSection.style.display = 'none';
+
+                // ปรับ Hero กลับสู่สถานะเริ่มต้น (ให้พื้นหลังเต็ม)
+                heroSection.style.backgroundImage = "url('bg.png')";
+                heroSection.style.backgroundSize = 'cover';
+                heroSection.style.backgroundPosition = 'center top';
+                heroSection.innerHTML = '<h1></h1>';
+                heroSection.style.textAlign = 'center';
+                heroSection.style.padding = '4rem 2rem';
+                heroSection.style.minHeight = '400px';
+                heroSection.style.display = 'flex';
+                heroSection.style.flexDirection = 'column';
+                heroSection.style.justifyContent = 'center';
+                heroSection.style.alignItems = 'center';
+            });
+
+            productsLink.addEventListener('click', function(event) {
+                event.preventDefault();
+
+                // ซ่อนส่วนเนื้อหาเริ่มต้นและติดต่อเรา
+                defaultContent.style.display = 'none';
+                contactSection.style.display = 'none';
+
+                // แสดงส่วนข้อมูลข้าว
+                riceSection.style.display = 'block';
+
+                // ปรับเปลี่ยนส่วน Hero (แสดงแค่ข้อความ ไม่มีพื้นหลัง และแคบลง)
+                heroSection.style.backgroundImage = 'none';
+                heroSection.style.backgroundColor = 'transparent';
+
+                heroSection.innerHTML = '<h1>สินค้าของเรา - ข้าวอินทรีย์</h1>';
+                heroSection.style.textAlign = 'left';
+                heroSection.style.padding = '1rem 2rem';
+                heroSection.style.minHeight = 'auto';
+                heroSection.style.display = 'flex';
+                heroSection.style.alignItems = 'center';
+                
+            });
+            contactLink.addEventListener('click', function(event) {
+                event.preventDefault();
+
+                // ซ่อนส่วนเนื้อหาเริ่มต้นและส่วนข้าว
+                defaultContent.style.display = 'none';
+                riceSection.style.display = 'none';
+
+                // แสดงส่วนติดต่อเรา
+                contactSection.style.display = 'block';
+
+                // ปรับเปลี่ยนส่วน Hero (แสดงแค่ข้อความ ไม่มีพื้นหลัง และแคบลง)
+                heroSection.style.backgroundImage = 'none';
+                heroSection.style.backgroundColor = 'transparent';
+                heroSection.innerHTML = '<h1>ติดต่อเรา</h1>';
+                heroSection.style.textAlign = 'left';
+                heroSection.style.padding = '1rem 2rem';
+                heroSection.style.minHeight = 'auto';
+                heroSection.style.display = 'flex';
+                heroSection.style.alignItems = 'center';
+        });
+    });
+    </script>
+</body>
+</html>

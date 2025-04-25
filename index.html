@@ -14,6 +14,7 @@
             background-color: #f4f4f4;
             color: #333;
             line-height: 1.6;
+            padding-top: 68px; /* ปรับค่านี้ตามความสูงของแถบนำทางของคุณ */
         }
 
         header {
@@ -22,7 +23,7 @@
             color: white;
             font-weight: 500;
             text-align: right;
-            z-index: 10; /* Ensure header is above other elements */
+            z-index: 99; /* Ensure header is above other elements */
         }
 
         nav {
@@ -32,13 +33,24 @@
             background-color: #fff;
             padding: 1rem 2rem;
             box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-            z-index: 10; /* Ensure navigation is above other elements */
+            z-index: 100; /* ให้แถบนำทางอยู่เหนือเนื้อหาอื่น */
+            position: fixed; /* ทำให้แถบนำทางคงที่ */
+            top: 0;
+            left: 0;
+            right: 0;
         }
 
         nav .logo {
             font-size: 1.8rem;
             font-weight: 600;
             color: #0a2a43;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        nav .logo img {
+            max-height: 40px;
+            vertical-align: middle;
         }
 
         nav ul {
@@ -306,7 +318,7 @@ nav ul li.dropdown .hover-box a:hover {
             <li><a href="#" id="home-link">หน้าแรก</a></li>
             <li><a href="#" id="products-link">สินค้าของเรา</a></li>
             <li class="dropdown">
-                <a href="#">วิธีการสั่งซื้อ</a>
+                <a href="#">การสั่งซื้อ</a>
                 <div class="submenu-wrapper">
                     <div class="hover-box">
                         <a href="#">วิธีการสั่งซื้อสินค้า</a>

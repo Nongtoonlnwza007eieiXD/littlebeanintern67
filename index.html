@@ -44,9 +44,15 @@
         nav ul {
             list-style: none;
             display: flex;
-            gap: 2rem;
             margin: 0;
             padding: 0;
+            justify-content: space-evenly; 
+            align-items: center; 
+        }
+
+        nav ul li {
+            flex-grow: 1; /* ให้แต่ละ li ขยายเพื่อเติมพื้นที่ว่างเท่าๆ กัน */
+            text-align: center; /* จัดข้อความในแต่ละ li ให้อยู่ตรงกลาง */
         }
 
         nav ul li a {
@@ -55,6 +61,7 @@
             font-weight: 400;
             transition: color 0.3s ease;
             padding: 0.7rem 1.5rem; /* ปรับ padding ทั่วไป */
+            display: block;
         }
 
         nav ul li a:hover {
@@ -71,14 +78,15 @@ nav ul li.dropdown {
 
 nav ul li.dropdown > a {
     display: block; /* Make the main link a block element */
-    padding-right: 1.5rem; /* Adjust padding as needed */
+    padding-right: 0; /* Adjust padding as needed */
 }
 
 nav ul li.dropdown .submenu-wrapper {
     display: none; /* ซ่อน wrapper เริ่มต้น */
     position: absolute;
     top: 100%;
-    left: 0;
+    left: 50%;
+    transform: translateX(-50%);
     z-index: 20;
 }
 
@@ -91,7 +99,7 @@ nav ul li.dropdown .hover-box {
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
     border-radius: 0.3rem;
     padding: 0.5rem; /* ปรับ padding โดยรวม */
-    min-width: 200px; /* ปรับความกว้างให้พอดีกับข้อความ */
+    min-width: 150px; /* ปรับความกว้างให้พอดีกับข้อความ */
     /* เอา display: flex; และ gap ออก */
 }
 

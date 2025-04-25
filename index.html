@@ -307,10 +307,10 @@ nav ul li.dropdown .hover-box a:hover {
     </style>
 </head>
 <body>
-    <header>ผลิต–จำหน่าย ข้าวอินทรีย์ และสินค้าทางการเกษตร</header>
+    <header id="top-header">ผลิต–จำหน่าย ข้าวอินทรีย์ และสินค้าทางการเกษตร</header>
 
     <nav>
-        <div class="logo" style="display: flex; align-items: center; gap: 10px;">
+        <div class="logo">
             <img src="logo.jpg" alt="นาพ่อ สวนแม่ Logo" style="max-height: 40px; vertical-align: middle;">
             <span style="font-weight: 600; color: #0a2a43;">นาพ่อ สวนแม่</span>
         </div>
@@ -404,7 +404,75 @@ nav ul li.dropdown .hover-box a:hover {
             const contactSection = document.getElementById('contact-section');
             const heroSection = document.querySelector('.hero');
             const homepageStatus = document.getElementById('homepage-status');
+            const topHeader = document.getElementById('top-header');
 
+            // ฟังก์ชันสำหรับตรวจสอบและแสดง/ซ่อน header
+        function updateHeaderVisibility() {
+            if (window.location.hash === '' || window.location.hash === '#home') {
+                topHeader.style.display = 'block'; // แสดง header ในหน้าแรก
+            } else {
+                topHeader.style.display = 'none'; // ซ่อน header ในหน้าอื่น
+            }
+        }
+
+        // เรียกฟังก์ชันเมื่อโหลดหน้าเว็บครั้งแรก
+        updateHeaderVisibility();
+
+        // เพิ่ม event listener ให้กับลิงก์ เพื่ออัปเดตเมื่อมีการเปลี่ยนหน้า (จำลองการเปลี่ยนหน้าด้วย hash)
+        homeLink.addEventListener('click', function(event) {
+            event.preventDefault();
+            window.location.hash = 'home';
+            updateHeaderVisibility();
+            defaultContent.style.display = 'flex';
+            riceSection.style.display = 'none';
+            contactSection.style.display = 'none';
+            heroSection.style.backgroundImage = "url('bg.png')";
+            heroSection.style.backgroundSize = 'cover';
+            heroSection.style.backgroundPosition = 'center top';
+            heroSection.innerHTML = '<h1></h1>';
+            heroSection.style.textAlign = 'center';
+            heroSection.style.padding = '4rem 2rem';
+            heroSection.style.minHeight = '400px';
+            heroSection.style.display = 'flex';
+            heroSection.style.flexDirection = 'column';
+            heroSection.style.justifyContent = 'center';
+            heroSection.style.alignItems = 'center';
+        });
+
+        productsLink.addEventListener('click', function(event) {
+            event.preventDefault();
+            window.location.hash = 'products';
+            updateHeaderVisibility();
+            defaultContent.style.display = 'none';
+            contactSection.style.display = 'none';
+            riceSection.style.display = 'block';
+            heroSection.style.backgroundImage = 'none';
+            heroSection.style.backgroundColor = 'transparent';
+            heroSection.innerHTML = '<h1>สินค้าของเรา - ข้าวอินทรีย์</h1>';
+            heroSection.style.textAlign = 'left';
+            heroSection.style.padding = '1rem 2rem';
+            heroSection.style.minHeight = 'auto';
+            heroSection.style.display = 'flex';
+            heroSection.style.alignItems = 'center';
+        });
+
+        contactLink.addEventListener('click', function(event) {
+            event.preventDefault();
+            window.location.hash = 'contact';
+            updateHeaderVisibility();
+            defaultContent.style.display = 'none';
+            riceSection.style.display = 'none';
+            contactSection.style.display = 'block';
+            heroSection.style.backgroundImage = 'none';
+            heroSection.style.backgroundColor = 'transparent';
+            heroSection.innerHTML = '<h1>ติดต่อเรา</h1>';
+            heroSection.style.textAlign = 'left';
+            heroSection.style.padding = '1rem 2rem';
+            heroSection.style.minHeight = 'auto';
+            heroSection.style.display = 'flex';
+            heroSection.style.alignItems = 'center';
+        });
+    });
             // แสดงข้อความ "อยู่ที่หน้าแรก" เมื่อโหลดหน้าเว็บ
             homepageStatus.style.display = 'block';
             setTimeout(() => {
@@ -477,7 +545,6 @@ nav ul li.dropdown .hover-box a:hover {
                 heroSection.style.display = 'flex';
                 heroSection.style.alignItems = 'center';
         });
-    });
     </script>
 </body>
 </html>
